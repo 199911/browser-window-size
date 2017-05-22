@@ -1,29 +1,42 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8" />
-  <!-- Add viewport which is the same as Lifehack.org -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0"/>
-  <title>Test Window Size Calculation</title>
-</head>
-<body>
-</body>
-    <pre>
-    </pre>
+    <meta charset="utf-8" />
+    <!-- Add viewport which is the same as Lifehack.org -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0"/>
+    <title>Test Window Size Calculation</title>
     <style>
         pre {
-            font-size: 24px;
+            font-size: calc(16px + 6 * ((100vw - 320px) / 680));
         }
     </style>
     <script>
+        function getBrowserWidth() {
+            return window.innerWidth ||
+                (document.doucmentElement && document.doucmentElement.clientWidth) ||
+                document.getElementsByTagName('body')[0].clientWidth;
+        }
+        function getBrowserHeight() {
+            return window.innerHeight ||
+                (document.doucmentElement && document.doucmentElement.clientHeight) ||
+                document.getElementsByTagName('body')[0].clientHeight;
+        }
     document.addEventListener("DOMContentLoaded", function(event) {
+        var text = '';
+
+        var crossBrowserWidth = getBrowserWidth();
+        var crossBrowserHeight = getBrowserHeight();
+        text += 'crossBrowserWidth = ' + crossBrowserWidth + '\n';
+        text += 'crossBrowserHeight = ' + crossBrowserHeight + '\n';
+
+        text += '<hr>'
+
         var innerWidth = window.innerWidth;
         var innerHeight = window.innerHeight;
         var screenWidth = window.screen.width;
         var screenHeight = window.screen.height;
         var devicePixelRatio = window.devicePixelRatio
         var ratio = devicePixelRatio || 1;
-        var text = '';
         text += 'innerWidth = ' + innerWidth + '\n';
         text += 'innerHeight = ' + innerHeight + '\n';
         text += 'screenWidth = ' + screenWidth + '\n';
@@ -31,9 +44,10 @@
         text += 'devicePixelRatio = ' + devicePixelRatio + '\n';
         text += 'tunnedWidth = ' + innerWidth * ratio + '\n';
         text += 'tunnedHeight = ' + innerHeight * ratio + '\n';
-
-        var pre = document.querySelector('pre');
-        pre.textContent = text;
+        document.body.innerHTML = '<pre>' + text + '</pre>';
     });
     </script>
+</head>
+<body>
+</body>
 </html>
