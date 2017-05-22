@@ -13,12 +13,12 @@
     <script>
         function getBrowserWidth() {
             return window.innerWidth ||
-                (document.doucmentElement && document.doucmentElement.clientWidth) ||
+                (document.documentElement && document.documentElement.clientWidth) ||
                 document.getElementsByTagName('body')[0].clientWidth;
         }
         function getBrowserHeight() {
             return window.innerHeight ||
-                (document.doucmentElement && document.doucmentElement.clientHeight) ||
+                (document.documentElement && document.documentElement.clientHeight) ||
                 document.getElementsByTagName('body')[0].clientHeight;
         }
     document.addEventListener("DOMContentLoaded", function(event) {
